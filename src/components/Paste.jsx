@@ -30,11 +30,11 @@ const Paste = () => {
     
 
     return (
-        <div className='pl-10'>
-            <input className='p-2 rounded-2xl min-w-[600px] mt-5'
+        <div className='pl-10 item-center '>
+            <input className='p-2 rounded-2xl w-[95%] mt-10 mr-10 bg-white'
                 type="search" placeholder='search here'
                 value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-            <div className='flex flex-col gap-5 mt-5 pl'>
+            <div className='flex items-center justify-center flex-col gap-5 mt-5 '>
                 {
                     filterData.length > 0 &&
                     filterData.map(
@@ -46,31 +46,32 @@ const Paste = () => {
                             const year = date.getFullYear();
                         
                             return (
-                                <div className='border' key={paste?._id}>
-                                    <div>
+                                <div className='bg-white border border-gray-600 w-[80%] rounded-2xl mr-6 relative min-h-60 pb-10' key={paste?._id}>
+                                    <div className='text-xl pl-2'>
                                         {paste.title}
                                     </div>
-                                    <div>
+                                    <hr className='border-gray-600 border-0.5'/>
+                                    <div className='pl-2 pr-20 pt-2'>
                                         {paste.content}
                                     </div>
-                                    <div className='flex flex-row gap-4 place-content-evenly'>
+                                    <div className='flex flex-col gap-2 absolute top-9 right-2'>
                                         
-                                            <NavLink to={`/?pasteId=${paste?._id}`}><button className='text-white'>Edit </button></NavLink>
+                                            <NavLink to={`/?pasteId=${paste?._id}`}><button className='text-white w-14 text-xs'>Edit </button></NavLink>
                                        
                                         
-                                            <NavLink to={`/pastes/${paste?._id}`}> <button className='text-white'>View</button></NavLink>
+                                            <NavLink to={`/pastes/${paste?._id}`}> <button className='text-white w-14 text-xs text-center'>View</button></NavLink>
                                         
-                                        <button onClick={() => handleDelete(paste?._id)}>
+                                        <button className='w-14 h-8 text-xs  text-center' onClick={() => handleDelete(paste?._id)}>
                                             Delete
                                         </button>
-                                        <button onClick={() => {
+                                        <button className=' w-14 h-8 text-xs  text-center' onClick={() => {
                                             navigator.clipboard.writeText(paste?.content),
                                             toast.success("Copied")
 
                                         }}>
                                             Copy
                                         </button>
-                                        <button onClick={toggleOptions}>
+                                        <button className='w-14 text-xs text-center' onClick={toggleOptions}>
                                             Share
                                         </button>
 
@@ -81,10 +82,10 @@ const Paste = () => {
                                                 width:'10%',
                                                 padding:'1%',
                                                 height:'auto',
-                                                top: '23%',
-                                                left: '6px',
+                                                top: '1%',
+                                                left: '100px',
                                                 marginTop: '8px',
-                                                backgroundColor: '#242424',
+                                                
                                                 
                                                 
                                                 zIndex: 1000,
@@ -115,7 +116,7 @@ const Paste = () => {
 
 
                             </div>
-                                    <div>
+                                    <div className='absolute bottom-2 left-2'>
                                         {day} {month} {year}
                                     </div>
 

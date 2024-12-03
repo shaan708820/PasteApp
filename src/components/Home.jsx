@@ -21,9 +21,11 @@ const Home = () => {
     }, [pasteId])
 
     function createPaste() {
+        // alert("clicked")
+        if(!title.trim() || !value.trim())return; 
         const paste = {
-            title: title,
-            content: value,
+            title: title.trim(),
+            content: value.trim(),
             _id: pasteId || Date.now().toString(36),
             createdAt: new Date().toISOString(),
         }
@@ -47,7 +49,7 @@ const Home = () => {
         <div>
             <div className='flex flex-row gap-7 place-content-between'>
                 <input
-                    className='p-1 rounded-2xl mt-2 w-[66%] pl-4'
+                    className='p-1 rounded-2xl mt-10 w-[74%] pl-4 ml-10 bg-white'
                     type="text"
                     placeholder='Enter your title'
                     value={title}
@@ -55,7 +57,7 @@ const Home = () => {
                 />
                 <button 
                     onClick={createPaste}
-                    className='p-1 rounded-2xl mt-2'>
+                    className='p-1 rounded-2xl mt-10 mr-10 hover:bg-blue-900'>
                     {
                         pasteId ? "Update my paste" : "Create my paste"
                     }
@@ -63,7 +65,7 @@ const Home = () => {
             </div>
             <div className='mt-8'>
                 <textarea
-                    className='rounded-2xl mt-4 min-w-[500px] p-4'
+                    className='rounded-2xl mt-4 w-[94%] p-4 bg-white ml-10'
                     value={value}
                     placeholder='Enter your content'
                     onChange={(e) => setValue(e.target.value)}
